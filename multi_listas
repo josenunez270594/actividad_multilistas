@@ -1,0 +1,90 @@
+'''
+programa phyton utilizando multilistas y debe tener lo siguiente:
+1. registrar candidatos a una oportunidad de empleo el cual debe cumplir las siguientes condiciones:
+   a edad (25 - 30 años)
+   b profesion: ing. sistemas / informatico
+   c experiencia 2 a 4 años
+3 consultar candidatos:
+   mostrar todos los candidatos
+3 unformacion a capturar:
+   -nombres
+   -identificacion
+   -correo
+   -contacto
+   -edad
+   -años de experiencia
+   -profesion
+   -ciudad
+   -sexo
+'''
+import os
+
+ls_nombres = []
+ls_identificacion = []
+ls_correo = []
+ls_contacto = []
+ls_edad = []
+ls_años_experiencia = []
+ls_profesion = []
+ls_ciudad = []
+ls_sexo = []
+def fnt_limpiar():
+    os.system('cls')
+    print('author: jose daniel nuñez \nfirst version 1.0\n\n')
+def fnt_registrar(nombres, identificacion, correo, contacto, edad, experiencia, profesion, ciudad, sexo):
+    if nombres == '' or identificacion == '' or correo == '' or contacto == '' or edad == '' or experiencia == '' or profesion == '' or ciudad == '' or sexo == '':
+        print('Faltan datos por ingresar')    
+    else:
+        ls_nombres.append(nombres)
+        ls_identificacion.append(identificacion)
+        ls_correo.append(correo)
+        ls_contacto.append(contacto)
+        ls_edad.append(edad)
+        ls_años_experiencia.append(experiencia)
+        ls_profesion.append(profesion)
+        ls_ciudad.append(ciudad)
+        ls_sexo.append(sexo)
+def fnt_selector(op):
+    fnt_limpiar()
+    global ls_nombres
+    global ls_identificacion
+    global ls_correo
+    global ls_contacto
+    global ls_edad
+    global ls_años_experiencia
+    global ls_profesion
+    global ls_ciudad
+    global ls_sexo
+    global sw
+    if op == '1':
+        nombre = input('Nombre: ')
+        id = input('id: ')
+        if id in ls_identificacion:
+            enter = input('El id ingresado ya se encuentra registrado <ENTER>')
+        else:
+            correo = input('correo: ')
+            contacto = input('contacto: ')
+            edad = input('edad: ')
+            experiencia = input('experiencia: ')
+            profesion = input('profesion: ')
+            ciudad = input('ciudad: ')
+            sexo = input('sexo:')
+            edad = int(edad)
+            experiencia = int(experiencia)
+            if (edad >= 25 and edad <= 30) and (profesion == 'ingenieria sistemas' or profesion == 'ingenieria informatica') and    (experiencia >=2 and experiencia <=4):
+                fnt_registrar(nombre, id, correo, contacto, edad, experiencia, profesion, ciudad, sexo)
+                enter = input('almacenado exitosamente')
+            else:
+                enter = input('Los datos ingresados no cumplen con las condiciones')
+    if op == '2':
+        for i in range(len(ls_identificacion)):
+            print(f'\nnombre: {ls_nombres[i]} id: {ls_identificacion[i]} correo: {ls_correo[i]} contacto: {ls_contacto[i]} edad: {ls_edad[i]} experiencia: {ls_años_experiencia[i]} profesion: {ls_profesion[i]} ciudad: {ls_ciudad[i]} sexo: {ls_sexo[i]}')
+        enter = input('mostrado con exito <ENTER>')
+    if op == '3':
+        sw = False   
+        
+sw = True
+while sw == True:
+    fnt_limpiar()
+    opcion = input('\n<<<<<<<MENU PRINCIPAL SELECTOR>>>>>>\n\n1. REGISTRAR \n2. MOSTRAR \n3. SALIR \n-->')
+    fnt_selector(opcion)
